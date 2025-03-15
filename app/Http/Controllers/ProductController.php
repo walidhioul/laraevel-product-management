@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product; // Make sure the model name is correctly capitalized
+use App\Models\product; // Make sure the model name is correctly capitalized
 use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
     public function index() {
         $products = Product::all(); // Fetch all products from the database
-        return view('products.index', compact('products'));
+        return view('product.index');
     }
     
+    public function dashbord() {
+        return view('product.dashbord');
+    }
 
     public function create()
     {
