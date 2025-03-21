@@ -9,22 +9,6 @@ Route::get('/', function () {
 });
 
 Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
-
-Route::middleware('auth')->controller(ProductController::class)->group( function () {
-
-    Route::get('product/create',[ProductController::class,'create'])->name('product.create');
-    
-    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
-    
-    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-    
-    Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-    
-    Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
-
-});
-
-
 Route::middleware('guest')->controller(AuthController::class)->group( function () {
 
     //authentification
@@ -43,6 +27,12 @@ Route::middleware('guest')->controller(AuthController::class)->group( function (
     
 
 });
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::put('/products/{id}', [ProductController::class, 'update']);
+Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 
 
